@@ -44,8 +44,8 @@ class AppPagination
 
         $results = $this->_conn->createCommand($query)->queryAll();
 
-        $this->page->page = (int) $page;
-        $this->page->limit = (int) $limit;
+        $this->page->page = (int)$page;
+        $this->page->limit = (int)$limit;
         $this->page->data = $results;
     }
 
@@ -58,8 +58,12 @@ class AppPagination
 
         $last = ceil($this->page->total / $this->page->limit);
 
-        $start = $this->page->page;
+        $start = ($this->page->page - ($this->page->pages_shown + 2) < 1) ? 1 : $this->page->page - ($this->page->pages_shown + 2);
         $end = ($this->page->page + $this->page->pages_shown < $last) ? $this->page->page + $this->page->pages_shown : $last;
+
+
+
+
 
         $html = '<div class="table" style="width: auto">';
 
@@ -72,8 +76,8 @@ class AppPagination
         }
 
 
-        for ($i = $start; $i <= $end; $i++) {
-            $class = ($this->page->page == $i) ? "" : "";
+        for ($i = $start; $i <= $this->page->pages_shown + 2; $i++) {
+            $class = ($this->page->page == $i) ? "paging-current" : "";
             $html .= '<div class="table-cell ' . $class . '"><a href="?limit=' . $this->page->limit . '&page=' . $i . $querystring . '">' . $i . '</a></div>';
         }
 
