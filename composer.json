@@ -1,0 +1,22 @@
+{
+  "name": "c006/yii2-pagination",
+  "description": "Pagination Module",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension",
+    "pagination"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jon Chambers",
+      "email": "jchambers.dev@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "c006\\pagination\\": ""
+    }
+  }
+}
